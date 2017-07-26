@@ -1,0 +1,82 @@
+
+Player Character Spec
+-------------------------------------------------------------------------------
+Each PlayerCharacter has:
+
+1x name: STRING
+1x level: map of character class names to INTs
+1x experience: INT
+1x stats_bundle: STATS
+1x race: RACE
+1x gender: GENDER
+1x character_class: CHARACTER_CLASS
+1x portrait: STRING
+nx active_modifiers: STRING
+1x spell_book: SPELL_BOOK
+1x spell_picks: INT
+
+1x helm: ARMOUR (helm)
+1x torso_armour: ARMOUR (torso)
+1x leg_armour: ARMOUR (leg)
+1x boots: ARMOUR (boots)
+1x gloves: ARMOUR (gloves)
+1x primary_weapon: WEAPON
+1x secondary_weapon: WEAPON
+1x alt_primary_weapon: WEAPON
+1x alt_secondary_weapon: WEAPON
+1x misc_item_1: ITEM
+1x banner_item: ITEM
+nx pack_items: ITEM (max 20)
+
+RACE:
+1x name: STRING
+1x description: STRING
+1x starting_hit_point_percent: INT
+1x starting_stealth_point_percent: INT
+1x starting_magic_point_percent: INT
+1x starting_modifiers: STAT_MODIFIER
+1x constant_modifiers: STAT_MODIFIER
+1x body_parts: PERCENTAGE_TABLE
+1x right_hand_icon: STRING
+1x left_hand_icon: STRING
+nx allowed_genders: GENDER
+1x is_magic_dead: BOOL
+
+GENDER:
+1x name: STRING
+1x starting_modifiers: STAT_MODIFIER
+1x constant_modifiers: STAT_MODIFIER
+
+CHARACTER_CLASS:
+1x type: (Hero, Retainer)
+1x name: STRING
+1x description: STRING
+1x starting_hit_points: INT
+1x starting_stealth_points: INT
+1x starting_magic_points: INT
+1x starting_spell_picks: INT
+1x spell_picks_granted_at_level: INT
+nx starting_active_modifiers: STRING
+1x starting_modifiers: STAT_MODIFIER
+1x constant_modifiers: STAT_MODIFIER
+1x unlock_modifiers: STAT_MODIFIER
+1x num_starting_spell_books: INT
+nx available_spell_books: STARTING_SPELL_BOOK
+nx allowed_genders: STRING
+nx allowed_races: STRING
+nx starting_kits: STARTING_KIT
+1x level_up_hit_points: DICE
+1x level_up_stealth_points: DICE
+1x level_up_magic_points: DICE
+1x level_up_assignable_modifiers: INT
+1x level_up_spell_picks: INT
+1x level_up_modifiers: STAT_MODIFIER
+
+STARTING_SPELL_BOOK:
+1x spell_book: SPELL_BOOK
+1x max_spell_level: INT
+1x level_offset: INT
+
+STARTING_KIT:
+1x weapon: STRING
+...?

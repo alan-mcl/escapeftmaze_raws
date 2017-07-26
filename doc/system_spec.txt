@@ -1,0 +1,478 @@
+
+System
+-------------------------------------------------------------------------------
+Maze is a dungeon crawl.  The characters confront conflict situations and have
+three strategies for resolving them: combat, stealth and magic.
+
+Resources
+---------------------------------------
+Characters have three resources to draw upon:
+
+1. Hit Points
+The Combat resource.
+Depleted by taking hits in combat, and by other physical activity like breaking
+doors down.  Replenished by resting.  When depleted the character dies.
+During combat or movement, Hit Points regenerate at a default rate of 1 per 20
+turns, modified by the characters HIT_POINT_REGEN modifier.
+While resting with a positive regen rate the default rate is 1 per 10 turns.
+
+2. Stamina
+Stamina increases upwards from zero as the character takes actions. Once the
+characters current stamina is greater or equal to his current hit points, he
+falls unconscious.
+During combat or movement, Stamina Points regenerate, modified by the characters
+STAMINA_REGEN modifier.
+
+3. Magic Points
+The Magic resource.
+Depleted by casting spells.  Replenished by resting.  When depleted, the
+character can no longer cast spells.
+Magic Regeneration:
+During combat or movement, Magic Points regenerate at a default rate of 1 per
+20 turns, modified by the characters MAGIC_POINT_REGEN modifier.
+While resting with a positive regen rate the default rate is 1 per 10 turns.
+
+Conflict Situations
+---------------------------------------
+1. Fighting Monsters
+By far the most common problem facing the characters.  To resolve it requires
+either avoiding it or depleting the monsters Hit Points. Characters can resolve
+it as follows:
+ - Combat: simply taking hits and dishing out damage faster.  Boils down to
+   spending Hit Points in order to deal greater damage via force of arms.
+ - Stealth: Stealth characters can backstab and snipe to deal damage faster.
+   in a stealthy enough party, they may have an option of evading monsters,
+   depending on party stealth abilities withing the terrain.
+ - Magic: spending Magic Points to cast damage dealing spells.
+
+2. Locks and Traps
+The second most common problem.  Characters typically need to get past a locked
+door or into a trapped chest.
+ - Combat: breaking it.  Breaking down a door costs significant Hit Points,
+   breaking into a chest costs a bit less, in either case the character has to
+   shoulder the effects of any trap.
+ - Stealth: picking the locks and disarming the traps.
+ - Magic: spending Magic Points to cast spells of unlocking and disarming.
+
+3. NPCs
+Sometimes the characters need to convince an NPC to work with them.
+ - Combat: threatening the NPC.  No cost, but not generally very effective.
+ - Stealth: bribing the NPC.  Costs money, and only selectively effective.
+ - Magic: spending Magic Points to cast spells of influence.
+
+Effectiveness
+---------------------------------------
+There are two groups of effectiveness metrics: modifiers (that the player can
+edit) and stats (that he can't).
+
+MODIFIERS
+Broken up into 4 groups:
+
+1. Attribute Modifiers:
+These in turn are split by the resource that they affect.  A resource can be
+raised by raising it's associated Attribute Modifiers
+ - Combat: Brawn, Agility
+ - Stealth: Thieving, Sneaking
+ - Magic: Brains, Power
+
+2. Combat Modifiers:
+These relate to the skill with weapons in combat:
+ - Swing
+ - Thrust
+ - Bash
+ - Cut
+ - Lunge
+ - Punch
+ - Kick
+ - Throw
+ - Shoot
+
+3. Stealth Modifiers:
+These relate to the various stealth actions:
+ - Stealth:Wilderness
+ - Stealth:Wasteland
+ - Stealth:Urban
+ - Stealth:Dungeon
+ - Backstab
+ - Snipe
+ - Lock&Trap
+ - Steal
+
+4. Magic Modifiers:
+These relate to the skill at casting spells:
+ - Chant
+ - Rhyme
+ - Gesture
+ - Posture
+ - Thought
+ - Alchemic
+ - Herbal
+
+STATS
+All the other stuff.  Most will be at 0 unless modified by conditions,
+enchantments, magic items, character class or similar.
+ - Initiative
+ - Attack
+ - Damage
+ - toPenetratate
+ - vsPenetrate
+ - vsAmbush
+ - vsDodge
+ - vsHide
+ - toThreaten
+ - toBribe
+ - Hit Point Regen Rate
+ - Stealth Point Regen Rate
+ - Magic Point Regen Rate
+ - Save vs Blessings
+ - Save vs Curses
+ - Save vs Conjurations
+ - Save vs Evocations
+ - Save vs Illusions
+ - Save vs Transmutations
+ - Save vs Beguilements
+ - Red Magic Generated
+ - Black Magic Generated
+ - Purple Magic Generated
+ - Gold Magic Generated
+ - White Magic Generated
+ - Green Magic Generated
+ - Blue Magic Generated
+
+Fighting
+---------------------------------------
+Fighting proceeds in phases as follows:
+1. All combatants indicate their Combat Intentions.  These can be (details
+later):
+ - Attack
+ - Defend
+ - Cast Spell
+ - Use an item
+ - Change equipment
+ - Run
+
+2. Determine initiative:
+Each combatant rolls 1d10+Initiative, rank in ascending order.
+
+3. Resolve the Combat Intentions into Combat Actions (ie, work out multiple
+attacks, etc).
+
+4. Order the Combat Actions based on combatant intiative plus each actions
+intiative modifiers.  Sort the list in descending order, randomising ties.
+This is the order of actions for the phase.
+
+5. In order, start resolving Combat Actions.
+ - Attack:
+   1. From the selected group of enemies, randomly (uniform) select one that is
+      still alive.  If none are alive, append a Defend event for resolution
+      instead and exit.
+   2. From the selected enemy, randomly select a body part from it's
+      body_parts PERCENTAGE_TABLE.
+   3. Randomly (uniform) determine the type of attack from the list of the
+      weapon that is being used (swing, thrust, etc). If the weapon is backstab
+      or snipe capable and the characters backstab or snipe skill is higher than
+      the chosen modifier, use backstab or snipe instead.
+   4. Calculate the attackers toHit as follows:
+      1d20
+      + attackers character level
+      + attackers Attack modifier
+      + attackers attack type modifier (or backstab/snipe)
+      + selected body part Attack modifier
+      + toHit bonus of the weapon
+   5. Calculate the defenders Defence as follows:
+      1d20
+      + defenders character level
+      + defenders Defence modifier
+      + select body part Defence modifier
+   6. If toHit > Defence, the attack hits
+      If it misses, append an AttackMiss event for resolution and exit.
+   7. If it hits, append an AttackHit event.
+   8. If the affected body part has armour, determine if the armour subtracts
+      damage as follows:
+      + the armours damage prevention chance
+      - the attackers Brawn modifier
+      - the attackers toPenetrate modifier
+      - toPenetrate bonus of the weapon
+      + the defenders vsPenetrate modifier
+      roll 1d100 to get <= the resulting total.
+   9. Determine damage as follows (minimum 0 damage):
+      + weapon damage Dice roll
+      + the attackers Damage modifier
+      - if required, the armours damage prevention value
+      *2 for a backstab or snipe attack
+      Append a Damage event
+   10. If the weapon has spell effects, and damage is > 0, determine which of
+      them take effect.  For each of those, apply them to the victim and append
+      resulting events.
+
+ - Defend: nothing.
+ - Cast Spell: choose victim(s) as required, execute the Spell.
+ - Use an Item: choose victim(s) as required, execute the Effect.
+ - Change Equipment: character gets a chance to re-arrange equipment.
+ - Run: attempt to run away.
+
+Each resolved Action results in one or more Combat Events.
+
+Carrying Capacity
+---------------------------------------
+The carrying capacity of each player character is calculated as follows:
+Admittedly it's a heroic equation ;-)
+
+ + base 50kg
+ + 1kg per character level
+ + 2kg per BRAWN
+ + .05kg per THIEVING
+ + .1kg per STEALTH:WILDERNESS
+ + .1kg per STEALTH:WASTELANDS
+
+Practicing Modifiers
+---------------------------------------
+The system tracks practice points for each player character modifier.  Given
+enough practice points, that modifier is increased by 1.
+Practice points required are:
+ if (base modifier >= 0)
+    ((base modifier DIV 10)+1) * 100
+ else
+    75
+in tabular form, points required to get +1:
+ ...-1: 75 points
+ 0..10: 100 points
+ 11..20: 200 points
+ etc.
+
+Levelling Up
+---------------------------------------
+The levelling up process is as follows:
+1. Grant the character the following:
+   + 1 character level to current character class
+   + Hit Points, specified by current character class
+   + Magic Points, specified by current character class
+   + spell picks, specified by current character class
+2. Ask the player to choose from one of the following bonuses
+   + 3 Hit Points
+   + 3 Magic Points
+   + 2 extra modifiers to assign later
+   + 1 extra spell pick
+   + unlock a modifier
+   + add an extra max spell level to one spell book
+   + revitalise
+   + change class
+3. Ask the player to assign a number of modifier bonuses to
+   unlocked modifiers (specified by current character class)
+4. If spell picks are available, ask the player to pick spells
+
+Locks And Traps
+---------------------------------------
+A chest presents the following options:
+
+ - Open: Simply try and open the chest.
+   1. Player selects a PC
+   2. Successful opening of the chest always triggers and disarms the trap
+   3. Attempting to open a chest reduces a PC's stealth points by 2d4
+
+ - Inspect: Inspect & Disarm any traps.
+   1. Player selects a PC
+   Disarming options based on thieves tools:
+   - lockpick
+   - crowbar
+   - chisel
+   - jackknife
+   - tension wrench
+   - hammer
+   - skeleton key
+   - drill
+   2. Initially all the tool options are unknown.  PC can determine which tools
+      to use by inspecting the trap.
+   3. Inspection: for each tool type total up the following:
+       - players score = THIEVING + LOCKS_AND_TRAPS + 1d20
+       - trap score = difficulty in that tool + 1d20
+      Result as follows:
+       - players score >= trap score: status is revealed (present or not present)
+       - players score >= trap score -10: status is unknown
+       - players score >= trap score -15: trap status lies
+       - players score < trap score -15: trap is sprung
+   4. PC needs to disarm with each tool separately.  Attempting to disarm with
+      a tool that is not required for the trap springs it instantly.
+      For each attempt total up the following:
+       - players score = THIEVING + LOCKS_AND_TRAPS + 1d20
+       - trap score = difficulty in that tool + 1d20
+      Result as follows:
+       - players score >= trap score: disarmed
+       - players score >= trap score -10: no effect
+       - players score < trap score -10: trap is sprung
+
+ - Spell: Player character can cast a spell that targets "locks_or_traps".
+   1. Player selects a PC and a spell and spell casting level.
+   2. Each such spell will have some sort of modifier to the attempt
+   3. The spell attacks each tool required in turn.
+   4. For each attempt total up the following:
+      - players score = spell modifier + 1d20
+      - trap score = difficulty in that tool + 1d20
+   5. Result as follows:
+       - players score >= trap score: disarmed
+       - players score >= trap score -10: no effect
+       - players score < trap score -10: trap is sprung
+
+ - Use Item: the same as attempting with a spell, except that the item
+   supplies the bonus.
+
+ - Leave: Nothing happens.
+
+A locked door presents the following options:
+
+ - Force: Break the door open.  Each door has an associated Hit Point cost.
+   1. Player selects a PC.
+   2. If the HP cost is more than that PC's HP, he loses no HP and the door is
+      not opened.
+   3. If the HP cost won't kill the PC, he loses that HP and has an 50% +BRAWN
+      - portals resist_force (max 99) chance of opening the door.
+   Attempting to force a door reduces a PC's stealth points to 0
+
+ - Pick Locks:
+   As for disarming traps, except that the tool options start off known, and
+   a "trap sprung" result simply forces a restart.
+
+ - Spell: As for disarming traps
+
+ - Use Item: As for disarming traps
+
+ - Leave: nothing happens
+
+NPCs
+---------------------------------------
+When the party encounters an NPC, the reaction depends on the NPCs attitude
+towards the party.
+<0: hostile, NPC simply attacks the party.  Resolve as a combat
+0..100: neutral, NPC needs convincing
+>=100: friendly
+
+Friendly options:
+ - Talk
+ - Trade
+   Choose a character and then popup the trading dialog.
+ - Give
+   Simply give the item to the NPC and execute the bit of script.
+ - Steal
+   1. Player selects a PC and an item (or gold) to attempt to steal or simply
+      to "grab and attack"
+   2. grab and attack grants the PCs the item and initiates combat.
+   3. steal as follows:
+   4. calculate the NPC total as follows:
+   NPCs resist_steal
+   + foe_level *2
+   + NPCs theft_counter
+   + 1d10
+   5. calculate the PC total as follows:
+   PC level
+   + THIEVING modifier
+   + STEAL modifier
+   + 1d10
+   6. if PC total is 5 or more greater than the NPC total, the theft succeeds
+      PCs get the item and the gold and the NPCs theft_counter gets +1
+   7. otherwise if the PC total equal to or greater than the NPC total, the
+      theft fails but the NPC doesn't notice.  NPC theft_counter++
+   8. if the PC total is less than the NPC total, the theft fails and the NPC
+      notices.  NPC theft_counter += 10, NPC attitude -= (20 + resist_steal)
+   9. Gold stolen will be (1d4+3)*10% (ie 40%-70%) of the NPCs
+      max_purchase_price, + the PCs THIEVING + STEAL
+      with a maximum of 500*PC level
+ - Cast Spell
+   1. Player selects a PC and a spell and spell casting level.
+   2. Charm spell results adjust the NPC attitude
+   3. Mindread spell results simply execute the mindRead part of the NPC script
+   4. Theft spell results attempt to steal an item
+ - Use Item
+   Same as spell casting, except that the item supplies the parameters
+ - Attack
+   Move to combat with the NPC
+ - Leave
+
+Neutral Options
+ - Threaten
+   1. calculate the NPC's total as follows:
+   NPC's resist_threats
+   + foe_level * 10
+   + 1d10
+   2. calculate the Party total as follows:
+   sum of all BRAWN and SKILL modifiers
+   + sum of all TO_THREATEN modifiers
+   + sum of all levels
+   + 1d10
+   3. If the party total exceeds the NPC total the threat succeeds, otherwise
+      it fails.  In either case simply run the appropriate script.
+ - Bribe
+   Choose a character and...
+   1. calculate the NPC's total as follows:
+   NPC's resist_bribes
+   + foe_level * 10
+   + 1d10
+   2. calculate the Party total as follows:
+   amount of gp offered /10
+   + chosen character's TO_BRIBE modifier
+   + 1d10
+ - Give
+   Same as for friendly
+ - Steal
+   Same as for friendly, except:
+   1. The item is randomly chosen (30% chance of stealing gold)
+   2. The PC total must be 10 or more greater than the NPC total
+ - Cast Spell
+   Same as for friendly
+ - Use Item
+   Same as for friendly
+ - Attack
+   Same as for friendly
+ - Leave
+
+Identifying Foes
+---------------------------------------
+Each foe has an identificaion difficulty associated with it.  This represents
+the character level required to identify it.  The difficulty is modifier down
+by the characters MYTHOLOGY modifier; a value greater than or equal to the
+identification difficulty results in the foe being identified.
+
+This check is repeated at the start of every round, with 1 being subtracted
+from the identification difficulty of the foes each subsequent round.
+
+Identifying Items
+---------------------------------------
+Each item has an identification difficulty associated with it.  This
+difficulty represents the character level required to identify it.  This is
+modified downwards by the characters ARTIFACTS modifier, a value greater than
+or equal to the identification difficulty results in the item being
+identified.
+
+Identify spell effects will have a level associated with them that is
+generated and checked in the attempt to identify an item.
+
+Recharging Items
+---------------------------------------
+Each item has a recharge difficulty associated with it.  Each recharge spell
+result generates a value.  If the value is greater than or equal to the
+difficuly, the item is recharged back up to maximum charges.
+
+Cursed Items
+---------------------------------------
+Each cursed item has a curse strength associated with it.  Remove curse spell
+effects will generate a value that is checked against this in an attempt to
+temporarily remove the curse.
+
+Manual identification of an item does not reveal its cursed status.  Magical
+identification might, depending on the spell effect.
+
+Stealth During Movement
+---------------------------------------
+While moving around, a single stealth value is calculated for the party as
+follows:
+ + the *lowest* stealth modifier for current terrain
+ +1 for each party member with a higher stealth modifier
+ -1 for each party member with an equal stealth modifier
+Foe groups work out the same value.
+When an encounter begins, calculate ambush totals for each side as follows:
+ + stealth value
+ + 1d10
+If one side exceeds the other by 11 or more, they have achieved surprise and
+get a free attack round.
+If one side exceeds the other by 21 or more, they have the option of evading
+the other party and thus cancelling the encounter.
+

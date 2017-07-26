@@ -1,0 +1,159 @@
+DONE:
+
+sprite: gnome warrior
+More or less your regular fantasy gnome - the gnomes of Aenen use blue
+(elemental) magic and build complicated clockwork and solar powered
+devices. Their warriors fight with a variety of weapons depending on
+their level (staves, morningstars, hand axes, short bows, spears,
+jian, fauchards) and use a bunch of low-level blue spells (except for
+the Gnome Warlock, who gets some better spells). This graphic would be
+used for all those: Gnome Beggar, Knave, Robber, Scout, Trooper,
+Warlock, and some of the gnome NPCs: Asius, Sarpedon, King
+Mnesus.
+
+sprite: gnome caster
+The graphic for gnomes that are primarily casters - they wield gnarled
+staves and cast blue spells appropriate to their level: Gnome Shaman,
+Machinist, Elemental, Primary, and some of the gnome NPCs: Mentes, Glaucus.
+
+sprite: gnome clockwork
+The graphic for the clockwork war machines that the gnomes deploy... I
+picture them something like the crazy MTG clockwork stuff :) they all
+fight with punches.
+Clockwork Digger, Clockwork Soldier, Clockwork Terror, Clockwork Vengeance.
+
+sprite: giant snail
+nasty giant snails that move slowly and bite and spit acid, their
+shells are armoured
+
+sprite: leonal warrior
+The leonals of the White Order are a bunch of tall, lion-headed
+knights who inhabit Danaos Castle. They're loosely based on the AD&D
+Leonals... all of them wear plate mail and fight with broadswords, and
+cast some low level white magic spells.
+This is the graphic for the regular leonal warriors: Leonal Knight,
+Peer, Champion, and some of the less important leonal NPCs: Diomedes,
+Stentor.
+
+sprite: leonal champion
+This is the graphic for the elite leonal warriors (Leonal Paladin),
+and the more important leonal NPCs: Belisarius, Agenor.
+
+sprite: earth elemental
+sprite: air elemental
+sprite: water elemental
+sprite: fire elemental
+all the elementals have punch attacks and cast spells appropriate to
+their element.
+
+sprite: moulder
+a plant foe, something like the AD&D shambling mound. they attack with nauseating grasps and vomiting noxious goo
+
+sprite: twisted sapling (tree)
+the animated tree monster: treant, ent, etc.
+
+
+sprite: giant snake (spotted boa, mottled python)
+giant snakes, some poisonous others not
+
+sprite: skeleton
+your regular D&D skeleton, generally unarmed and fighting with
+corrupting touches and spells
+
+sprite: puppet
+weird animated puppets that inhabit the crazy maze Hianbian.
+
+sprite: kami
+tortured spirit roaming the passages of Hianbian
+
+sprite: ghost (shade)
+undead ghosts encountered in the Ruins of Hail, they attack with
+debilitating touches and a variety of mostly black and purple spells
+
+sprite: wyrm
+flightless giant wyrms, picture the MTG type
+also used for rockeater: giant monster encountered in the darkness 
+of the Caves of Ilast.
+
+sprite: dragon (rock dragon)
+One or more generic dragon graphics required, there's currently one
+anonymous dragon in the database (Rock Dragon) and one dragon boss
+(Old Igor)
+
+sprite: vampire
+graphic for the (as yet unnamed) vampire who is the actual boss of the Ichiba Chamber of Commerce, if the player finds him it'll be down in the dungeons/sewers under Ichiba 
+Also used for Ghul: boss monster at the Plain of Pillars, a nasty flesh eating ghoul
+
+sprite: hag
+graphic for the annis hag bosses of the Caves of Ilast, Getsel Gnawtooth and Miriam Marrowsucker
+
+sprite: sorcerer (Bel Ies)
+boss monster in the gloomy Writhing Mire, a crazy sorcerer encountered in his secluded hut
+
+sprite: cat warrior (ren san, tao)
+spite for the brothers who are the boss monsters of Dalen, the green 
+magic bonus level. Fight with bushido blades.
+
+sprite: ninja
+deadly ninja, roaming the passages of Hianbian
+
+sprite: accountant (WE Pickett)
+graphic for the human NPC W.E. Pickett, the Director of the Ichiba
+Chamber of Commerce. He's a bean counting bureaucrat and a useless
+fighter.
+
+sprite: faerie (crag faerie)
+wee little faeries from Tornado Mountain that fight with daggers and
+use gold magic.
+
+sprite: bird (storm crow)
+birds, with bite and claw attacks.
+
+sprite: witch (Imogen)
+graphic for the NPC Imogen, a human witch who lives in a tower in
+Ichiba city. She uses black and green magic - her tower is populated
+with sinister carniverous plants and stone golems. I guess I picture
+her very loosely based on Poison Ivy from Batman, but with a lot of
+Goth influence
+
+sprite: skull crusher (ape)
+a giant ape with a very big club
+
+sprite: human thief
+a generic graphic for human thieves and probably some of the NPCs -
+cloak & dagger stuff
+
+sprite: elf druid (lorelei)
+graphic for the NPC Lorelei, and elf druid who maintains a green magic sanctuary near Danaos.
+
+sprite: demon
+generic demon sprite
+
+sprite: panther (nightstalker)
+a vicious giant panther
+
+sprite: will o wisp
+classic fantasy will o wisp, a pretty badass enemy
+
+sprite: Fangorn
+Vampire boss of the black-magic bonus level, Castle Fangorn
+
+---------------------------------------------
+TO BE EXPORTED AND TESTED
+
+--------------------------------------------
+TO BE COLOURED
+
+---------------------------------------------
+TO BE INKED
+
+---------------------------------------------
+TO BE TOUCHED UP
+
+---------------------------------------------
+TO BE DRAWN
+
+sprite: angel??
+
+graphic: flickering torch
+a torch, flickering

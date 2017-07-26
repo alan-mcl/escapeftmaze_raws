@@ -1,0 +1,23 @@
+Maze folder structure will be:
+
+maze/bin: game engine jar(s)
+maze/log: log files, each in their own timestamped folder
+maze/data: campaigns
+maze: contains executables and maze.cfg
+
+maze.cfg:
+java properties file for app-wide configuration properties
+
+data contains a folder for each campaign, with default being a reserved name.
+each campaign folder contains (default is the example):
+default/db: contains the database
+default/bin: contains any campaign class jar(s)
+default/img: contains images
+default/sound: contains sound files
+default/font: contains fonts
+default/save: contains save games and the guild file
+
+default/campaign.cfg: 
+java properties file specifying campaign specific configuration.
+
+

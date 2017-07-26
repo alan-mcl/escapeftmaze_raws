@@ -1,0 +1,36 @@
+
+The Foe Spec
+-------------------------------------------------------------------------------
+Each FoeTemplate has:
+
+1x name: STRING
+1x plural_name: STRING
+1x unidentified_name: STRING
+1x body_range: DICE
+1x stealth_range: DICE
+1x magic_range: DICE
+1x experience: INT
+1x stats_bundle: STATS
+1x body_parts: PERCENTAGE_TABLE (body_part_desc + armour)
+1x body_parts_attacked: PERCENTAGE_TABLE (body parts of player attacked by this foe)
+1x attacks: PERCENTAGE_TABLE (ATTACK_TYPE)
+1x loot: LOOT_ENTRY (see chest spec)
+
+ARRACK_TYPE:
+one of:
+(
+"attack"
+1x description: STRING
+1x damage: DICE
+1x effects: PERCENTAGE_TABLE (SPELL_EFFECT)
+)
+OR
+(
+"cast spell"
+1x PERCENTAGE_TABLE (list of spells)
+)
+OR
+(
+"special ability"
+1x effect: SPELL_EFFECT
+)

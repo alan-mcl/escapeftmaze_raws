@@ -1,0 +1,80 @@
+
+The NPC Spec
+-------------------------------------------------------------------------------
+Each NPC has:
+
+-- general
+1x foe: FOE
+1x faction: STRING
+1x npc_attitude: INT
+1x npc_script: NPC_SCRIPT
+
+-- trades
+1x buys_at_%: INT
+1x sells_at_%: INT
+1x max_buying price: INT
+nx will_buy_item_type: (item types...)
+1x inventory_template: INVENTORY_TEMPLATE
+1x current_inventory: list of items
+
+-- interaction
+1x resist_threats: INT
+1x resist_bribes: INT
+1x resist_steal: INT
+
+INVENTORY_TEMPLATE:
+nx of the following:
+1x item_name: String
+1x %_chance_of_spawning: INT
+1x party_level_apppearing: INT
+1x max_stocked: INT
+1x %_chance_of_vanishing: INT
+1x stack_size: DICE
+
+
+NPC_SCRIPT:
+should support the following actions:
+----------------------------------------
+pre-appearance
+first greeting
+subsequent greetings
+neutral greeting
+attacks party
+party leaves
+attacked by party
+
+successful threat
+failed threat
+successful bribe
+failed bribe
+successful charm
+failed charm
+successful theft
+failed undetected theft
+failed detected theft
+players grab an item and attack
+
+given item
+refuses item
+party wants to talk
+parse party speech
+mindread
+mindread fails
+...
+
+
+should support the following events:
+----------------------------------------
+display flavour text
+npc speaks
+npc leaves
+npc attacks
+extort a money sum
+give item to party
+take item from party
+give gold to party
+give experience to the party
+change npc attitude
+change faction attitude
+change npc theft counter
+activate NPC

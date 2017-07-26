@@ -1,0 +1,17 @@
+
+The Chest Spec
+-------------------------------------------------------------------------------
+Each chest has:
+
+1x contents: TILE_SCRIPT
+0..1 trap: TRAP
+locked: BOOLEAN
+
+TRAP:
+1x name: STRING
+nx tools_required: (chisel, crowbar, drill, hammer, jackknife, lockpick, skeleton key, tension wrench)
+nx difficulty: INT corresponding to tools required
+1x payload: TILE_SCRIPT
+
+LOOT:
+nx (item_name, chance_present, quantity): (STRING, PERCENT, DICE)

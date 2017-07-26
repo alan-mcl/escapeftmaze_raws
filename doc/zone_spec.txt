@@ -1,0 +1,43 @@
+
+The Zone Spec
+-------------------------------------------------------------------------------
+
+Each Zone has:
+
+1x name: STRING
+1x Map: CRUSADER_MAP_DEFN
+nx TILES (corresponding to crusader tiles)
+nx Portals: PORTAL
+
+
+TILE:
+1x TILE_SCRIPT
+1x random_encounters
+1x amount_red_magic: INT
+1x amount_black_magic: INT
+1x amount_purple_magic: INT
+1x amount_gold_magic: INT
+1x amount_white_magic: INT
+1x amount_green_magic: INT
+1x amount_blue_magic: INT
+1x TERRAIN_TYPE
+
+TERRAIN_TYPE:
+1x type (urban, dungeon, wilderness, wasteland)
+1x subtype: STRING
+
+PORTAL:
+1x maze_variable: STRING
+1x two_way: BOOL
+1x initial_state: STRING
+1x from: POINT
+1x to: POINT
+1x can_force: BOOL
+1x can_pick: BOOL
+1x can_spell_pick: BOOL
+1x hit_point_cost_to_force: INT
+1x resist_force: INT
+8x tool_difficulty: INT
+1x required_tools: BITSET
+1x key_item: STRING
+1x consume_key_item: BOOL

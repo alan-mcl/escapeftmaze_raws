@@ -1,0 +1,41 @@
+DONE:
+gnome clockwork: 49214_tombola_Fisher_Price3.wav
+giant snake: 33458__Kjell_Persson__Boa_Constrictor_2.wav
+moulder: 55134__NoiseCollector__stereomonster.wav
+human thief: 54779_bevangoldswain_running_hard_surface.wav
+panther: 63668__Miselaineous__elaine_growl.wav
+ape: 34137__SylverMonk__SylverMonk_cavegrunt.wav
+twisted sapling: 33256__ERH__creaking_silver_birch_3c.wav
+bird: 56233__Q.K.__Crows_01.wav
+ninja: use the goblin thief sound
+hag: 80187__Robinhood76__01277_witch_cackle_laughter_1.wav
+ghost: 33501__CosmicD__dreamyghost.wav
+dragon: 85568__JoelAudio__DRAGON_ROAR.wav
+fire elemental: use the burning hands sound
+faerie: 51713__BristolStories__u_chimes_short1.wav
+cat warrior: use the goblin thief sound
+lorelei: use faerie sound
+Imogen: 15288_Hell_s_Sound_Guy_FEMALE_GIGGLE.wav
+kami: 76455__str4ngS__monster_insane_laugh_1.wav
+demon: use the group curse sound
+Fangorn: use the group curse sound
+wyrm: use the dragon sound
+will o wisp: use the faerie sound
+vampire: 48688__Sea_Fury__Monster_4
+Ghul: use vampire sound
+Bel Ies: use kami sound
+giant snail: 72755_reinsamba_snail_munching
+earth elemental: 7135_mystiscool_rocks1
+water elemental: 17783__suonho__ELEMENTS_WATER_02_Phasin_bubbles
+air elemental: 17645__Cyril_Laurier__Wind
+skeleton: 58626__kathol__A_Moaning_Zombie
+leonal knight: 24797__Terwelp__Lions_Roar_at_Lincoln_Park_Zoo
+puppet: 9557__thanvannispen__2gnomes
+gnome beggar: 79774__engreitz__ManClearingThroat_1
+WE Pickett: 79774__engreitz__ManClearingThroat_2
+
+---------------------------------------------
+TO BE TESTED:
+
+---------------------------------------------
+TODO:

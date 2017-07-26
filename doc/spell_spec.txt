@@ -1,0 +1,96 @@
+
+The Spell Spec
+-------------------------------------------------------------------------------
+
+Each Spell has:
+
+1x Name: STRING
+1x Shortcut: STRING
+1x Level: INT
+1x Requirements to learn: STATS
+1x REQUIREMENT
+1x TARGET_TYPE
+1x SPELL_SCHOOL
+1x SPELL_BOOK
+1x DURATION
+nx SPELL_EFFECT
+
+TARGET_TYPE:
+1x (caster, ally, party, foe, foe_group, all_foes, tile, lock_or_trap, ...?)
+
+SPELL_SCHOOL:
+1x (Beguilement, Evocation, Enchantment, Transmutation, Blessing, Curse, Conjuration)
+
+SPELL_BOOK:
+1x (Sorcery, Black_Magic, Witchcraft, Enchantment, White_Magic, Druidism, Elementalism)
+
+DURATION:
+1x (instant, VALUE)
+
+SPELL_EFFECT:
+1x SPELL_EFFECT_TYPE
+1x SPELL_EFFECT_SAVE
+1x save_modifier: VALUE
+1x unsavedResult: SPELL_RESULT
+1x savedResult: SPELL_RESULT
+
+SPELL_EFFECT_TYPE:
+1x (fire, ice, lightning, poison, none, psychic, ...?)
+
+SPELL_EFFECT_SAVE:
+1x (vsBeguilement, vsEvocation, vsEnchantment, vsTransmutation, vsBlessing, vsCurse, vsConjuration, None)
+
+VALUE:
+1x (constant:INT, range:DICE, MODIFIER, MANA_PRESENT, n*VALUE)
+1x scaleWithCastingLevel: BOOL
+
+MAGIC_MODIFIER:
+1x (Chant, Rhyme, Gesture, Posture, Thought, Alchemic, Herbal)
+
+SPELL_RESULT:
+one of:
+ - Damage (VALUE)
+ - Healing (VALUE)
+ - Condition
+ - Summoning
+ - Custom (impl class)
+ - ...?
+ 
+REQUIREMENT:
+nx MANA_PRESENT
+
+MODIFIER:
+... list all modifiers
+
+CONDITION:
+Conditions can be attached to: a PlayerCharacter, a Foe, a Tile
+1x name: String
+1x icon: String
+1x duration: VALUE
+1x strength: VALUE
+1x adjective: String
+1x damage: VALUE
+1x SPELL_EFFECT_TYPE (inherited from the SPELL_EFFECT)
+1x stat_modifiers: STAT_MODIFIERS
+1x scaleModifierWithStrength: INT
+1x strengthWanes: INT
+1x Effect (an effect recognized by the game)
+one of:
+ - None
+ - Sleep (character is immobile until hit, DEFENCE=0)
+ - Paralyse (character is immobile for the duration, DEFENCE=0)
+ - Webbed (character is immobile, struggles each turn to escape, DEFENCE=0)
+ - Disease (slowly drains stats and may spawn other conditions)
+ - KO (character is immobile for the duration, DEFENCE=0)
+ - Blind (character cannot see, DEFENCE-10, ATTACK-10, 20% stumbling)
+ - Terror (character is in terror, DEFENCE-5, ATTACK-5, 15% cowering, 15% freezing)
+ - Swallowed (character is immobile, stops when attacker is killed)
+ - Nausea (character is nauseous, DEFENCE-5, ATTACK-5, 15% gagging, 15% vomitting)
+ - Insane (character is mad, takes random action)
+ - Possession (character is fighting for the enemy)
+ - Irritate (DEFENCE-2, ATTACK-2, 5% scratching)
+
+
+
+
+
